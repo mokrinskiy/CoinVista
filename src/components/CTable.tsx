@@ -9,12 +9,23 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import CTableItem from "./CTableItem";
+import { fetchData } from "../utils/fetchData";
+import { useQuery } from "@tanstack/react-query";
 
-interface CTableProps {
-    data: [object];
-}
+const CTable: React.FC = () => {
+    const { data, isLoading } = useQuery({
+        queryKey: ["table"],
+        queryFn: () => fetchData("coins"),
+    });
 
-const CTable: React.FC<CTableProps> = ({ data }) => {
+    if (isLoading) {
+        return <h3>Loding...</h3>;
+    }
+    if (!data) {
+        return <h3>No data</h3>;
+    }
+    console.log(data)
+
     return (
         <TableContainer>
             <Table variant="simple" size={{ base: "sm", md: "md", xl: "lg" }}>
@@ -29,9 +40,10 @@ const CTable: React.FC<CTableProps> = ({ data }) => {
                     </Tr>
                 </Thead>
                 <Tbody>
-                    {data.map((item: any) => (
+                    {data?.coins.map((item: any) => (
                         <CTableItem
                             key={item.uuid}
+                            uuid={item.uuid}
                             iconUrl={item.iconUrl}
                             name={item.name}
                             symbol={item.symbol}

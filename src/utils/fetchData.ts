@@ -12,5 +12,5 @@ export async function fetchData(url: string) {
         }
     );
 
-    return data.data.coins;
+    return data.data;
 }

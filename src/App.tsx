@@ -3,14 +3,16 @@ import NavBar from "./layouts/NavBar";
 import Footer from "./layouts/Footer";
 import Homepage from "./pages/Homepage";
 import { createBrowserRouter } from "react-router-dom";
+import CryptoDetails from "./pages/CryptoDetails";
+import { Container } from "@chakra-ui/react";
 
 const Layout = () => {
     return (
-        <div className="max-w-6xl m-auto">
+        <Container maxW="5xl">
             <NavBar />
             <Outlet />
             <Footer />
-        </div>
+        </Container>
     );
 };
 
@@ -22,6 +24,10 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Homepage />,
+            },
+            {
+                path: "/coin/:id",
+                element: <CryptoDetails />,
             },
         ],
     },
