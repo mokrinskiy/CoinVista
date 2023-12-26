@@ -13,12 +13,16 @@ import {
     MenuList,
     Stack,
     Text,
+    useColorMode,
 } from "@chakra-ui/react";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const NavBar: React.FC = () => {
+    const { toggleColorMode } = useColorMode();
+
     return (
         <Box position="static" py="4" my="2">
             <Stack flexDirection="row" justifyContent="space-between">
@@ -46,6 +50,12 @@ const NavBar: React.FC = () => {
                             </Button>
                         </InputRightElement>
                     </InputGroup>
+                    <IconButton
+                        aria-label="color mode"
+                        variant="outline"
+                        icon={<DarkModeIcon />}
+                        onClick={toggleColorMode}
+                    />
                     <Menu>
                         <MenuButton
                             as={Button}
@@ -58,7 +68,6 @@ const NavBar: React.FC = () => {
                             <MenuItem>Create a Copy</MenuItem>
                             <MenuItem>Mark as Draft</MenuItem>
                             <MenuItem>Delete</MenuItem>
-                            <MenuItem>Attend a Workshop</MenuItem>
                         </MenuList>
                     </Menu>
                 </Flex>

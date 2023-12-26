@@ -23,7 +23,7 @@ const CTableItem: React.FC<CTableItemProps> = ({
     return (
         <Tr
             _hover={{
-                background: "gray.100",
+                background: "blackAlpha.100",
             }}
         >
             <Td>{index}</Td>
