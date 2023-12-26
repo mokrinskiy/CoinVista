@@ -24,7 +24,6 @@ const CTable: React.FC = () => {
     if (!data) {
         return <h3>No data</h3>;
     }
-    console.log(data)
 
     return (
         <TableContainer>
@@ -34,15 +33,17 @@ const CTable: React.FC = () => {
                 </TableCaption>
                 <Thead>
                     <Tr>
+                        <Th>#</Th>
                         <Th>Name</Th>
                         <Th>Price</Th>
                         <Th>Change</Th>
                     </Tr>
                 </Thead>
                 <Tbody>
-                    {data?.coins.map((item: any) => (
+                    {data?.coins.map((item: any, index: number) => (
                         <CTableItem
                             key={item.uuid}
+                            index={index}
                             uuid={item.uuid}
                             iconUrl={item.iconUrl}
                             name={item.name}

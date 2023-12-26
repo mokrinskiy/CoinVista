@@ -38,7 +38,7 @@ const HomeStats: React.FC = () => {
             slidesPerView={"auto"}
             freeMode={true}
             modules={[FreeMode]}
-            className="mySwiper my-5"
+            className="mySwiper my-5 z-0"
         >
             <SwiperSlide className="w-auto mr-10">
                 <Stat>

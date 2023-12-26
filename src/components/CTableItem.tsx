@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 interface CTableItemProps {
+    index: number;
     uuid: string;
     iconUrl: string;
     symbol: string;
@@ -12,6 +13,7 @@ interface CTableItemProps {
 }
 
 const CTableItem: React.FC<CTableItemProps> = ({
+    index,
     iconUrl,
     symbol,
     name,
@@ -24,6 +26,7 @@ const CTableItem: React.FC<CTableItemProps> = ({
                 background: "gray.100",
             }}
         >
+            <Td>{index}</Td>
             <Td>
                 <Link to={"/"}>
                     <Flex align="center" gap="5">
