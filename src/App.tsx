@@ -1,18 +1,20 @@
 import { Outlet, RouterProvider } from "react-router";
 import NavBar from "./layouts/NavBar";
 import Footer from "./layouts/Footer";
-import Homepage from "./pages/Homepage";
 import { createBrowserRouter } from "react-router-dom";
 import CryptoDetails from "./pages/CryptoDetails";
-import { Container } from "@chakra-ui/react";
+import { Container, Flex } from "@chakra-ui/react";
+import СryptoСurrencies from "./pages/СryptoСurrencies";
 
 const Layout = () => {
     return (
-        <Container maxW="5xl">
+        <Flex direction="column" flex="1">
             <NavBar />
-            <Outlet />
+            <Container maxW="5xl">
+                <Outlet />
+            </Container>
             <Footer />
-        </Container>
+        </Flex>
     );
 };
 
@@ -23,10 +25,10 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <Homepage />,
+                element: <СryptoСurrencies />,
             },
             {
-                path: "/coin/:id",
+                path: "/coins/:uuid",
                 element: <CryptoDetails />,
             },
         ],

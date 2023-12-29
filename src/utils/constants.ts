@@ -1,0 +1,1 @@
+export const timePeriod_values = ["1h", "24h", "7d", "30d", "1y", "3y"];

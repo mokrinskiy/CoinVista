@@ -14,6 +14,7 @@ interface CTableItemProps {
 
 const CTableItem: React.FC<CTableItemProps> = ({
     index,
+    uuid,
     iconUrl,
     symbol,
     name,
@@ -26,10 +27,10 @@ const CTableItem: React.FC<CTableItemProps> = ({
                 background: "blackAlpha.100",
             }}
         >
-            <Td>{index}</Td>
             <Td>
-                <Link to={"/"}>
-                    <Flex align="center" gap="5">
+                <Link to={`/coins/${uuid}`}>
+                    <Flex align="center" gap="4">
+                        <Text fontSize="xs">{index + 1} </Text>
                         <Image
                             w={{ base: "25px", md: "40px" }}
                             h={{ base: "25px", md: "40px" }}
@@ -47,7 +48,9 @@ const CTableItem: React.FC<CTableItemProps> = ({
                     </Flex>
                 </Link>
             </Td>
-            <Td>$ {Math.round(price * 10000000) / 10000000}</Td>
+            <Td fontSize={["xs", "md"]}>
+                $ {Math.round(price * 10000000) / 10000000}
+            </Td>
             {change > 0 ? (
                 <Td className="text-green-600">+{change} %</Td>
             ) : (

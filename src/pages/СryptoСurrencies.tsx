@@ -1,9 +1,9 @@
 import React from "react";
-import CTable from "../components/CTable";
-import HomeStats from "../components/HomeStats";
 import BestCoins from "../components/BestCoins";
+import HomeStats from "../components/HomeStats";
+import CTable from "../components/CTable";
 
-const Homepage: React.FC = () => {
+const СryptoСurrencies: React.FC = () => {
     return (
         <>
             <BestCoins />
@@ -13,4 +13,4 @@ const Homepage: React.FC = () => {
     );
 };
 
-export default Homepage;
+export default СryptoСurrencies;

@@ -11,7 +11,7 @@ import {
     Tooltip,
 } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
-import { fetchData } from "../utils/fetchData";
+import { fetchCryptoData } from "../utils/fetchCryptoData";
 import { formatNumber } from "../utils/formatNumber";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -22,7 +22,7 @@ import { FreeMode } from "swiper/modules";
 const HomeStats: React.FC = () => {
     const { data, isLoading } = useQuery({
         queryKey: ["stats"],
-        queryFn: () => fetchData("stats"),
+        queryFn: () => fetchCryptoData("stats"),
     });
 
     if (isLoading) {
@@ -40,6 +40,7 @@ const HomeStats: React.FC = () => {
             modules={[FreeMode]}
             className="mySwiper my-5 z-0"
         >
+            {/* market cap */}
             <SwiperSlide className="w-auto mr-10">
                 <Stat>
                     <StatLabel>
@@ -62,6 +63,7 @@ const HomeStats: React.FC = () => {
                     </Flex>
                 </Stat>
             </SwiperSlide>
+            {/* 24h market cup */}
             <SwiperSlide className="flex gap-4 w-auto mr-10">
                 <Center height="50px">
                     <Divider orientation="vertical" />
@@ -87,6 +89,7 @@ const HomeStats: React.FC = () => {
                     </Flex>
                 </Stat>
             </SwiperSlide>
+            {/* btc dominance */}
             <SwiperSlide className="flex gap-4 w-auto mr-10">
                 <Center height="50px">
                     <Divider orientation="vertical" />
@@ -105,6 +108,7 @@ const HomeStats: React.FC = () => {
                     <StatNumber>{data.btcDominance.toFixed(1)}%</StatNumber>
                 </Stat>
             </SwiperSlide>
+            {/* all coins */}
             <SwiperSlide className="flex gap-4 w-auto mr-10">
                 <Center height="50px">
                     <Divider orientation="vertical" />

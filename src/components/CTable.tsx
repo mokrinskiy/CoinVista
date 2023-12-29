@@ -9,13 +9,13 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import CTableItem from "./CTableItem";
-import { fetchData } from "../utils/fetchData";
+import { fetchCryptoData } from "../utils/fetchCryptoData";
 import { useQuery } from "@tanstack/react-query";
 
 const CTable: React.FC = () => {
     const { data, isLoading } = useQuery({
         queryKey: ["table"],
-        queryFn: () => fetchData("coins"),
+        queryFn: () => fetchCryptoData("coins"),
     });
 
     if (isLoading) {
@@ -33,14 +33,13 @@ const CTable: React.FC = () => {
                 </TableCaption>
                 <Thead>
                     <Tr>
-                        <Th>#</Th>
                         <Th>Name</Th>
                         <Th>Price</Th>
                         <Th>Change</Th>
                     </Tr>
                 </Thead>
                 <Tbody>
-                    {data?.coins.map((item: any, index: number) => (
+                    {data?.coins?.map((item: any, index: number) => (
                         <CTableItem
                             key={item.uuid}
                             index={index}
