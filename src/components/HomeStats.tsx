@@ -32,7 +32,6 @@ const HomeStats: React.FC = () => {
         return <h3>No data</h3>;
     }
 
-    console.log(data);
     return (
         <Swiper
             slidesPerView={"auto"}

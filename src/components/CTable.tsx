@@ -1,22 +1,19 @@
-import {
-    Table,
-    TableCaption,
-    TableContainer,
-    Tbody,
-    Th,
-    Thead,
-    Tr,
-} from "@chakra-ui/react";
-import React from "react";
+import { Table, TableContainer, Tbody, Th, Thead, Tr } from "@chakra-ui/react";
+import React, { useState } from "react";
 import CTableItem from "./CTableItem";
 import { fetchCryptoData } from "../utils/fetchCryptoData";
 import { useQuery } from "@tanstack/react-query";
+import Pagination from "./Pagination";
 
 const CTable: React.FC = () => {
+    const [currentOffset, setCurrentOffset] = useState(0);
+
     const { data, isLoading } = useQuery({
-        queryKey: ["table"],
-        queryFn: () => fetchCryptoData("coins"),
+        queryKey: ["table", currentOffset],
+        queryFn: () => fetchCryptoData(`coins?offset=${currentOffset}`),
     });
+
+    const totalPosts = data?.stats?.total;
 
     if (isLoading) {
         return <h3>Loding...</h3>;
@@ -28,9 +25,6 @@ const CTable: React.FC = () => {
     return (
         <TableContainer>
             <Table variant="simple" size={{ base: "sm", md: "md", xl: "lg" }}>
-                <TableCaption>
-                    Imperial to metric conversion factors
-                </TableCaption>
                 <Thead>
                     <Tr>
                         <Th>Name</Th>
@@ -42,6 +36,7 @@ const CTable: React.FC = () => {
                     {data?.coins?.map((item: any, index: number) => (
                         <CTableItem
                             key={item.uuid}
+                            rank={item.rank}
                             index={index}
                             uuid={item.uuid}
                             iconUrl={item.iconUrl}
@@ -53,6 +48,11 @@ const CTable: React.FC = () => {
                     ))}
                 </Tbody>
             </Table>
+            <Pagination
+                currentOffset={currentOffset}
+                setCurrentOffset={setCurrentOffset}
+                totalPosts={totalPosts}
+            />
         </TableContainer>
     );
 };

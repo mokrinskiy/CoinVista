@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 interface CTableItemProps {
     index: number;
+    rank: number;
     uuid: string;
     iconUrl: string;
     symbol: string;
@@ -13,7 +14,7 @@ interface CTableItemProps {
 }
 
 const CTableItem: React.FC<CTableItemProps> = ({
-    index,
+    rank,
     uuid,
     iconUrl,
     symbol,
@@ -30,7 +31,7 @@ const CTableItem: React.FC<CTableItemProps> = ({
             <Td>
                 <Link to={`/coins/${uuid}`}>
                     <Flex align="center" gap="4">
-                        <Text fontSize="xs">{index + 1} </Text>
+                        <Text fontSize="xs">{rank} </Text>
                         <Image
                             w={{ base: "25px", md: "40px" }}
                             h={{ base: "25px", md: "40px" }}
