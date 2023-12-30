@@ -55,7 +55,6 @@ const Pagination: React.FC<PaginationProps> = ({
                 </Button>
             ))}
             <Button
-                color="black"
                 isActive={activePage == lastPage - 1}
                 onClick={() => setCurrentOffset(lastPage * 50 - 50)}
             >

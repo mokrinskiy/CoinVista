@@ -32,6 +32,7 @@ const LineChart: React.FC<LineChartProps> = ({ uuid, currTimePeriod }) => {
 
     return (
         <Chart
+        className="w-[1000px] h-[500px]"
             type="line"
             data={lineChart_data}
             options={lineChart_options}

@@ -11,7 +11,7 @@ import CryptoMoreInfo from "../components/CryptoDetails/CryptoMoreInfo";
 const CryptoDetails: React.FC = () => {
     const { uuid } = useParams();
     const { data, isLoading } = useQuery({
-        queryKey: ["table"],
+        queryKey: ["table", uuid],
         queryFn: () => fetchCryptoData(`coin/${uuid}`),
     });
 

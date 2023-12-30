@@ -1,12 +1,8 @@
 import {
     Box,
-    Button,
     Flex,
     IconButton,
     Image,
-    Input,
-    InputGroup,
-    InputRightElement,
     Menu,
     MenuButton,
     MenuDivider,
@@ -19,14 +15,17 @@ import {
 } from "@chakra-ui/react";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import React from "react";
-import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import { Link } from "react-router-dom";
+import { useDisclosure } from "@chakra-ui/react";
+import SearchIcon from "@mui/icons-material/Search";
+import SearchModal from "../components/SearchModal";
 
 const NavBar: React.FC = () => {
     const { toggleColorMode } = useColorMode();
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
     return (
         <Box py="4" px={{ base: "4", md: "6", lg: "10" }}>
@@ -40,25 +39,13 @@ const NavBar: React.FC = () => {
                 </Flex>
                 {/* nav */}
                 <Flex align="center" gap="2">
-                    {/* search mobile */}
+                    {/* search */}
                     <IconButton
-                        display={{ base: "block", md: "none" }}
                         aria-label="Search"
                         icon={<SearchIcon />}
+                        onClick={onOpen}
                     />
-                    {/* search pc */}
-                    <InputGroup
-                        display={{ base: "none", md: "block" }}
-                        alignSelf="center"
-                        w="300px"
-                    >
-                        <Input type="text" placeholder="Search..." />
-                        <InputRightElement w="auto">
-                            <Button size="sm" mr="1">
-                                <SearchIcon />
-                            </Button>
-                        </InputRightElement>
-                    </InputGroup>
+                    <SearchModal isOpen={isOpen} onClose={onClose} />
                     {/* color theme */}
                     <IconButton
                         aria-label="color mode"
